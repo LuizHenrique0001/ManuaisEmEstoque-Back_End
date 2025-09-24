@@ -31,4 +31,9 @@ public class CarController {
          return ResponseEntity.status(201).body(service.saveCar(carDTO));
     }
 
+    @PutMapping
+    public ResponseEntity<Void> updateCar(@RequestBody CarDTO carDTO){
+        return ResponseEntity.accepted().body(service.updateCar(carDTO));
+    }
+
 }

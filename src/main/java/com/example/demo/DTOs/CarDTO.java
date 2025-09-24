@@ -16,6 +16,7 @@ public class CarDTO {
     private String chassi;
     private String model;
     private String observation;
+    private String deliverToWho;
 
     public String getObservation() {
         return observation;
@@ -29,5 +30,7 @@ public class CarDTO {
         return model;
     }
 
-
+    public String getDeliverToWho() {
+        return deliverToWho;
+    }
 }
