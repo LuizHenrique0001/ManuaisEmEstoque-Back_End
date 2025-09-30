@@ -18,7 +18,7 @@ public class CarController {
 
     @GetMapping
     public ResponseEntity<List<Car>> findAll(){
-        return ResponseEntity.ok().body(service.findAll());
+        return ResponseEntity.ok().body(service.findByStatus());
     }
 
     @GetMapping("/{chassi}")
@@ -34,6 +34,11 @@ public class CarController {
     @PutMapping
     public ResponseEntity<Void> updateCar(@RequestBody CarDTO carDTO){
         return ResponseEntity.accepted().body(service.updateCar(carDTO));
+    }
+
+    @DeleteMapping("/{chassi}")
+    public ResponseEntity<Void> disableOrActivateCar(@PathVariable String chassi){
+        return ResponseEntity.ok().body(service.disableOrActivateCar(chassi));
     }
 
 }
