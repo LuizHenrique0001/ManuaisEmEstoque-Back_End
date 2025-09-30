@@ -7,6 +7,7 @@ import com.example.demo.Services.Exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +60,18 @@ public class CarService {
         throw new ObjectNotFoundException("Chassi não encontrado!");
     }
 
-
+    public Void deliverCar(CarDTO carDTO){
+        if (repository.findByChassi(carDTO.getChassi()).isPresent()) {
+            if ((carDTO.getDeliverToWho() == null) || (carDTO.getDeliverToWho() == "")){
+                throw new ObjectNotFoundException("Preencha todos os campos");
+            }
+            Car car = findByChassi(carDTO.getChassi());
+            car.setDataDelivered(new Date());
+            car.setObservation(carDTO.getObservation());
+            car.setDeliverToWho(carDTO.getDeliverToWho());
+            repository.save(car);
+            return null;
+        }
+        throw new ObjectNotFoundException("Chassi não encontrado!");
+    }
 }

@@ -41,4 +41,9 @@ public class CarController {
         return ResponseEntity.ok().body(service.disableOrActivateCar(chassi));
     }
 
+    @PostMapping("/deliver")
+    public ResponseEntity<Void> deliverCar(@RequestBody CarDTO carDTO){
+        return ResponseEntity.ok().body(service.deliverCar(carDTO));
+    }
+
 }
